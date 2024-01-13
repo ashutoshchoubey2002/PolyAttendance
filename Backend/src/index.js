@@ -1,21 +1,27 @@
 console.log('Node.js version:', process.version);
-import express from 'express';
-// ... rest of your code
 // require('dotenv').config({path: './env'})
 import dotenv from "dotenv"
 import connectDB from "./db/index.js";
-const app = express()
+import {app} from './app.js'
+
 dotenv.config({
     path: './.env'
 })
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Hello, this is a simple API!' });
+    res.json({ message: 'Hello, this is a HOME PAGE!' });
   });
+  
+
 
 
 connectDB()
 .then(() => {
+
+    app.on("error", (error) =>{
+        console.log("error",error);
+        throw error
+    })
    
     app.listen(process.env.PORT || 3000, () => {
         console.log(`⚙️ Server is running at port : ${process.env.PORT}`);
