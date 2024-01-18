@@ -5,11 +5,11 @@ import fs from "fs" ;
 cloudinary.config({ 
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY, 
-  api_secret: CLOUDINARY_API_SECRET 
+  api_secret: process.env.CLOUDINARY_API_SECRET 
 });
 
 
-const uplodeOnCloudinary = async () =>{
+const uplodeOnCloudinary = async (localFilePath) =>{
     try {
         if(!localFilePath) return null
         // uplode the file on cloudinary
@@ -18,6 +18,7 @@ const uplodeOnCloudinary = async () =>{
         })
 
         console.log("File is uploded on cloudinary",responce.url);
+        fs.unlinkSync(localFilePath)
         return responce ; 
         
     } catch(error){
@@ -32,3 +33,5 @@ const uplodeOnCloudinary = async () =>{
 cloudinary.uploader.upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
   { public_id: "olympic_flag" }, 
   function(error, result) {console.log(result); });
+
+export {uplodeOnCloudinary }

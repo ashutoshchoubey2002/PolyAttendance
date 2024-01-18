@@ -18,12 +18,21 @@ app.use(cookieParser())
 import userRouter from "./routes/user.routes.js"
 
 //routes declaration
-app.post("/api/v1/users", userRouter)
+app.use("/api/v1/users", userRouter)
 
-// app.use("/users", userRouter)
-app.get("/users",(req,res)=>{
-    res.send("users") ;
-})
+
+// app.post('/api/v1/users', (req, res) => {
+   
+//     console.log('Received POST request to /api/v1/users');
+//         res.status(200).json({
+//         message: "ok"
+//     })
+    
+// });
+
+
+
+
 
 
 export {app}
