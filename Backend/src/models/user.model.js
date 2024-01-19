@@ -1,6 +1,7 @@
 import mongoose , {Schema} from "mongoose";
 import bcrypt from "bcrypt" ; 
 import jwt from "jsonwebtoken"
+
 const userSchema = new Schema({
 
     username :{
@@ -28,12 +29,12 @@ const userSchema = new Schema({
         index:true
     },
     avatar:{
-        type:String,// cloudnary
+        type:String,  // cloudnary
         required: true,
         
     },
     coverImage:{
-        type:String,// cloudnary
+        type:String,  // cloudnary
    
     },
     watchHistory:[
@@ -75,7 +76,7 @@ userSchema.methods.generateAccessToken = function(){
        },
        process.env.ACCESS_TOKEN_SECRET ,
        {
-        expiresIn:process.env.ACCESS_TOKEN_SECRET
+        expiresIn:process.env.ACCESS_TOKEN_EXPIRY
        }
 
     )
@@ -91,7 +92,7 @@ userSchema.methods.generateRefreshToken = function(){
     },
     process.env.REFRESH_TOKEN_SECRET ,
     {
-     expiresIn:process.env.REFRESH_TOKEN_SECRET
+     expiresIn:process.env.REFRESH_TOKEN_EXPIRY
     }
 
  )
