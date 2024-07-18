@@ -330,7 +330,7 @@ const updateThumbNail = asyncHandler(async (req, res) => {
 
 const deleteVideo = asyncHandler(async (req, res) => {
   // get user Id
-  // get video id which needs to be delted
+  // get video id which needs to be deleted
   // get all user docs from video collection
   // find and delte the video/doc from user collection
   // retunr responce updated collection
